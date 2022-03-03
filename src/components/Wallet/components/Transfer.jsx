@@ -143,6 +143,12 @@ function Transfer() {
         </div>
         <div style={styles.select}>
           <div style={styles.textWrapper}>
+            <Text strong>Gas:</Text>
+          </div>
+          <Input autoFocus onChange={setReceiver} />
+        </div>
+        <div style={styles.select}>
+          <div style={styles.textWrapper}>
             <Text strong>Asset:</Text>
           </div>
           <AssetSelector setAsset={setAsset} style={{ width: "100%" }} />
