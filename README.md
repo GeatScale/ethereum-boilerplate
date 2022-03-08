@@ -52,7 +52,6 @@ yarn start
 # 🧭 Table of contents
 
 - [`ethereum-boilerplate`](#ethereum-boilerplate)
-- [🚀 Quick Start](#-quick-start)
 - [🧭 Table of contents](#-table-of-contents)
 - [🏗 Ethereum Components](#-ethereum-components)
 - - [`<Account />`](#account-)
