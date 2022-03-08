@@ -9,7 +9,7 @@ export default function AssetSelector({ setAsset, style }) {
   const { Moralis } = useMoralis();
 
   const fullBalance = useMemo(() => {
-    if (!assets || !nativeBalance) return null;
+    if (!assets || !nativeBalance?.balance) return null;
     return [
       ...assets,
       {
