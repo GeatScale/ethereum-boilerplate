@@ -22,13 +22,13 @@ function MenuItems() {
         <NavLink to="/wallet">👛 Wallet</NavLink>
       </Menu.Item>
       <Menu.Item key="/1inch">
-        <NavLink to="/1inch">🏦 Swap Crownfunding</NavLink>
+        <NavLink to="/1inch">🏦 Swap Crowdfunding</NavLink>
       </Menu.Item>
       <Menu.Item key="/erc20balance">
         <NavLink to="/erc20balance">💰 Balances</NavLink>
       </Menu.Item>
       <Menu.Item key="/erc20transfers">
-        <NavLink to="/erc20transfers">💸 Transfers</NavLink>
+        <NavLink to="/erc20transfers">💸 Activity</NavLink>
       </Menu.Item>
       <Menu.Item key="/backup">
         <NavLink to="/backup">📄 Backup</NavLink>
