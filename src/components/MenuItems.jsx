@@ -22,10 +22,7 @@ function MenuItems() {
         <NavLink to="/wallet">👛 Wallet</NavLink>
       </Menu.Item>
       <Menu.Item key="/1inch">
-        <NavLink to="/1inch">🏦 Dex</NavLink>
-      </Menu.Item>
-      <Menu.Item key="onramp">
-        <NavLink to="/onramp">💵 Fiat</NavLink>
+        <NavLink to="/1inch">🏦 Swap Crownfunding</NavLink>
       </Menu.Item>
       <Menu.Item key="/erc20balance">
         <NavLink to="/erc20balance">💰 Balances</NavLink>
@@ -33,8 +30,8 @@ function MenuItems() {
       <Menu.Item key="/erc20transfers">
         <NavLink to="/erc20transfers">💸 Transfers</NavLink>
       </Menu.Item>
-      <Menu.Item key="/contract">
-        <NavLink to="/contract">📄 Contract</NavLink>
+      <Menu.Item key="/backup">
+        <NavLink to="/backup">📄 Backup</NavLink>
       </Menu.Item>
     </Menu>
   );

@@ -105,7 +105,7 @@ const App = () => {
             <Route path="/erc20transfers">
               <ERC20Transfers />
             </Route>
-            <Route path="/contract">
+            <Route path="/Backup">
               <Contract />
             </Route>
             <Route exact path="/"></Route>
