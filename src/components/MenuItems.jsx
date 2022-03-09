@@ -19,19 +19,29 @@ function MenuItems() {
       defaultSelectedKeys={[pathname]}
     >
       <Menu.Item key="/wallet">
-        <NavLink to="/wallet">👛 Wallet</NavLink>
+        <NavLink to="/wallet">
+          <i className="fa-solid fa-wallet" /> Wallet
+        </NavLink>
       </Menu.Item>
       <Menu.Item key="/1inch">
-        <NavLink to="/1inch">🏦 Swap Crowdfunding</NavLink>
+        <NavLink to="/1inch">
+          <i className="fa-solid fa-shuffle" /> Swap Crowdfunding
+        </NavLink>
       </Menu.Item>
       <Menu.Item key="/erc20balance">
-        <NavLink to="/erc20balance">💰 Balances</NavLink>
+        <NavLink to="/erc20balance">
+          <i className="fa-solid fa-coins" /> Balances
+        </NavLink>
       </Menu.Item>
       <Menu.Item key="/erc20transfers">
-        <NavLink to="/erc20transfers">💸 Activity</NavLink>
+        <NavLink to="/erc20transfers">
+          <i className="fa-solid fa-timeline" /> Activity
+        </NavLink>
       </Menu.Item>
       <Menu.Item key="/backup">
-        <NavLink to="/backup">📄 Backup</NavLink>
+        <NavLink to="/backup">
+          <i className="fa-solid fa-clock-rotate-left" /> Backup
+        </NavLink>
       </Menu.Item>
     </Menu>
   );
