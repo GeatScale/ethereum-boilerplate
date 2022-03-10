@@ -117,8 +117,9 @@ const App = () => {
       </Router>
       <Footer style={{ textAlign: "center" }}>
         <Text>
+          <spam>Powered by </spam>
           <a href="#" target="_blank">
-            Powered by GreenToken
+            GreenToken
           </a>
         </Text>
       </Footer>
