@@ -8,6 +8,8 @@ import ERC20Balance from "components/ERC20Balance";
 import ERC20Transfers from "components/ERC20Transfers";
 import DEX from "components/DEX";
 import Wallet from "components/Wallet";
+import Welcome from "components/Welcome";
+import Signup from "components/Signup";
 import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
@@ -107,6 +109,12 @@ const App = () => {
             </Route>
             <Route path="/Backup">
               <Contract />
+            </Route>
+            <Route exact path="/welcome">
+              <Welcome />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
             </Route>
             <Route exact path="/"></Route>
             <Route path="/nonauthenticated">
