@@ -1,4 +1,7 @@
-import { Button, Card, Checkbox, Form, Typography } from "antd";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { Button, Card, Checkbox, Typography } from "antd";
+import { generate_seed } from "utils/seed";
 const { Text } = Typography;
 
 const styles = {
@@ -17,7 +20,13 @@ const styles = {
   },
 };
 
-export default function Slide() {
+const Signup = () => {
+  const [seed, setSeed] = useState("");
+
+  function handleGenerateSeed() {
+    setSeed(generate_seed());
+  }
+
   return (
     <div>
       <h1 style={{ textAlign: "center", marginBottom: "12px" }}>Signup</h1>
@@ -49,36 +58,42 @@ export default function Slide() {
           </div>
           <div
             style={{
-              display: "grid",
-              alignContent: "center",
-              textAlign: "left",
-              marginTop: "10px",
-              marginBottom: "30px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              margin: "10px",
             }}
           >
-            <Form required>
+            <div>
               <Checkbox>
                 I understand that all my funds are kept safely in this device,
                 and not on TeiWallet servers.
               </Checkbox>
-            </Form>
-            <Form required>
+            </div>
+            <div>
               <Checkbox>
                 I understand that if this application was deleted, my TEI fUNDS
                 can only be recovered with the (json) backup file or my seed
                 phrase.
               </Checkbox>
-            </Form>
-            <Form required>
+            </div>
+            <div>
               <Checkbox>
                 I undestand that i will recive a Json file with my seed in it,
                 with this Json file i can easy import my wallet again.
               </Checkbox>
-            </Form>
+            </div>
           </div>
-          <Button type="primary">See my seed </Button>
+          <Button type="primary" onClick={handleGenerateSeed}>
+            Generate my Wallet (SEED)
+          </Button>
         </div>
+        <Card data-cy="seed-box">
+          <p>{seed}</p>
+        </Card>
       </Card>
     </div>
   );
-}
+};
+
+export default withRouter(Signup);
