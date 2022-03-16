@@ -53,7 +53,8 @@ const Signup = () => {
           </div>
           <div>
             <Text strong>
-              We are almost done, check the boxes below and click on Get seed
+              We are almost done, check the boxes below and click on Generate my
+              Wallet (SEED)
             </Text>
           </div>
           <div
@@ -84,7 +85,11 @@ const Signup = () => {
               </Checkbox>
             </div>
           </div>
-          <Button type="primary" onClick={handleGenerateSeed}>
+          <Button
+            style={{ marginBottom: "10px" }}
+            type="primary"
+            onClick={handleGenerateSeed}
+          >
             Generate my Wallet (SEED)
           </Button>
         </div>
