@@ -18,7 +18,7 @@ import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems";
-import TeiWalletLogo from "./assets/Logo";
+import Logo from "./assets/Logo";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -66,7 +66,9 @@ const App = () => {
     <Layout style={{ height: "100vh", overflow: "auto" }}>
       <Router>
         <Header style={styles.header}>
-          <TeiWalletLogo />
+          <a href="#">
+            <Logo />
+          </a>
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
@@ -135,6 +137,15 @@ const App = () => {
             TeiWallet
           </a>
         </Text>
+        <center>
+          <a
+            href="https://teiwallet.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Logo />
+          </a>
+        </center>
       </Footer>
     </Layout>
   );

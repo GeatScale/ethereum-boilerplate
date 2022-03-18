@@ -2,8 +2,15 @@ import React from "react";
 
 const TeiWalletLogo = () => {
   return (
-    <div style={{ display: "none" }}>
+    <div>
       <svg
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "50px",
+          height: "50px",
+          margin: "15px",
+        }}
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
         width="843.000000pt"
