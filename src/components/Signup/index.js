@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import Step1 from "./Step1";
+import Step2 from "./Step2";
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -33,8 +34,17 @@ const Signup = () => {
       <h1 style={{ textAlign: "center", marginBottom: "12px" }}>Signup</h1>
       {form.step === 1 && (
         <Step1
-          changeCheckBox={changeCheckBox}
           form={form}
+          changeForm={changeForm}
+          changeCheckBox={changeCheckBox}
+          goNextStep={goNextStep}
+        />
+      )}
+      {form.step === 2 && (
+        <Step2
+          form={form}
+          changeForm={changeForm}
+          changeCheckBox={changeCheckBox}
           goNextStep={goNextStep}
         />
       )}

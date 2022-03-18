@@ -106,7 +106,10 @@ const Step1 = ({ changeCheckBox, form, goNextStep, changeForm }) => {
           )}
         </div>
         {!dontHaveSeed && (
-          <div>
+          <center style={{ marginTop: "20px" }}>
+            <Text strong style={{ color: "red" }}>
+              COPY YOUR SEED
+            </Text>
             <Card style={{ fontWeight: "bold", textAlign: "center" }}>
               {form.seed}
             </Card>
@@ -119,7 +122,7 @@ const Step1 = ({ changeCheckBox, form, goNextStep, changeForm }) => {
                 Confirm Wallet
               </Button>
             </center>
-          </div>
+          </center>
         )}
       </Card>
     </div>
