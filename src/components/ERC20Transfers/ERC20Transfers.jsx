@@ -54,7 +54,14 @@ function ERC20Transfers() {
 
   let key = 0;
   return (
-    <div style={{ width: "65vw", padding: "15px" }}>
+    <div
+      style={{
+        width: "65vw",
+        padding: "15px",
+        boxShadow: "0 0 1.2rem rgb(8 96 242 / 15%)",
+        borderRadius: "1rem",
+      }}
+    >
       <h1>
         <i className="fa-solid fa-timeline" />
         <spam> ERC20 Transfers</spam>
