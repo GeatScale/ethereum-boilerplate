@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Typography } from "antd";
+import { Card, Typography, Button } from "antd";
 import { shuffle } from "utils/shuffle";
 
 const { Text } = Typography;
@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-const Step2 = ({ form }) => {
+const Step2 = ({ form, goNextStep }) => {
   const [shuffledSeed, setShuffledSeed] = useState([]);
   const [selectedSeed, setSelectedSeed] = useState([]);
 
@@ -50,6 +50,16 @@ const Step2 = ({ form }) => {
     });
   }
 
+  function validateSeed() {
+    return form.seed === selectedSeed.join(" ");
+  }
+
+  function checkSeedToNextStep() {
+    if (validateSeed()) goNextStep();
+  }
+
+  const invalidSeed = !validateSeed();
+
   return (
     <div>
       <Card
@@ -74,12 +84,28 @@ const Step2 = ({ form }) => {
             <Card style={{ fontWeight: "bold", textAlign: "center" }}>
               {selectedSeed.map((word) => {
                 return (
-                  <div onClick={() => handleDeselectWord(word)} key={word}>
+                  <Text
+                    cursor="pointer"
+                    onClick={() => handleDeselectWord(word)}
+                    key={word}
+                  >
                     {word}
-                  </div>
+                  </Text>
                 );
               })}
             </Card>
+            <center style={{ marginTop: "10px" }}>
+              <Button
+                disabled={invalidSeed}
+                type="primary"
+                onClick={checkSeedToNextStep}
+              >
+                Confirm
+              </Button>
+              <Button type="primary" onClick={goNextStep}>
+                Confirm
+              </Button>
+            </center>
           </>
         }
       ></Card>
