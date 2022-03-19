@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NetworkWeb3Connector from "moralis/lib/weapp/Web3Connector/NetworkWeb3Connector";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import TokenPrice from "components/TokenPrice";
@@ -56,9 +57,12 @@ const App = () => {
     useMoralis();
 
   useEffect(() => {
-    const connectorId = window.localStorage.getItem("connectorId");
-    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
-      enableWeb3({ provider: connectorId });
+    if (!isWeb3Enabled && !isWeb3EnableLoading) {
+      enableWeb3({
+        connector: NetworkWeb3Connector,
+        speedyNodeApiKey: process.env.REACT_APP_MORALIS_API_KEY,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
 
