@@ -1,8 +1,13 @@
 {
-  "name": "ethereum-boilerplate",
-  "version": "0.1.0",
+  "name": "tei-wallet",
+  "version": "1.0.0",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@babel/core": "^7.17.8",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
     "@fortawesome/fontawesome-free": "^6.0.0",
     "@hookstate/core": "^3.0.13",
     "@hookstate/persistence": "^3.0.0",
