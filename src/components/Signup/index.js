@@ -11,7 +11,11 @@ const Signup = () => {
     checkbox1: false,
     checkbox2: false,
     checkbox3: false,
+    password: "",
+    checkPassword: "",
   });
+
+  const minCharacters = 6;
 
   function changeForm(field, newValue) {
     setForm((current) => {
@@ -55,6 +59,7 @@ const Signup = () => {
           changeForm={changeForm}
           changeCheckBox={changeCheckBox}
           goNextStep={goNextStep}
+          minCharacters={minCharacters}
         />
       )}
     </div>
