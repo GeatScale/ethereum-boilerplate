@@ -57,7 +57,7 @@ function ERC20Transfers() {
     <div style={{ width: "65vw", padding: "15px" }}>
       <h1>
         <i className="fa-solid fa-timeline" />
-        <spam> ERC20 Transfers</spam>
+        <span> ERC20 Transfers</span>
       </h1>
       <Skeleton loading={!ERC20Transfers}>
         <Table
