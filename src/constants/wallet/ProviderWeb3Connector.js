@@ -108,7 +108,6 @@ class ProviderWeb3Connector extends AbstractWeb3Connector {
   }
 
   async activate({ chainId: providedChainId } = {}) {
-    console.log("activate");
     if (providedChainId) {
       this.chainId = verifyChainId(providedChainId);
     }

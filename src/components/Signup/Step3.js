@@ -19,10 +19,17 @@ const styles = {
   },
 };
 
-const Step3 = ({ form, changeForm, saveKeyStore, minCharacters }) => {
+const Step3 = ({
+  form,
+  changeForm,
+  saveKeyStore,
+  minCharacters,
+  isLoading,
+}) => {
   const invalidPassword =
     form.password !== form.checkPassword ||
     form.password.length < minCharacters;
+  const blockConfirm = isLoading || invalidPassword;
 
   return (
     <div>
@@ -31,7 +38,7 @@ const Step3 = ({ form, changeForm, saveKeyStore, minCharacters }) => {
         title={
           <>
             <center>
-              <Text strong>Create Password</Text>
+              <Text strong>Create a password</Text>
             </center>
             <Form
               style={{
@@ -55,10 +62,10 @@ const Step3 = ({ form, changeForm, saveKeyStore, minCharacters }) => {
               />
               <Button
                 type="primary"
-                disabled={invalidPassword}
+                disabled={blockConfirm}
                 onClick={saveKeyStore}
               >
-                Confirm
+                {`Confirm${isLoading ? "..." : ""}`}
               </Button>
             </Form>
           </>

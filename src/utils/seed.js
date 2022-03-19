@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { decryptWallet, getEncryptedKeyStore } from "../helpers/wallet";
+import { decryptWallet } from "../helpers/wallet";
 import { HD_PATH } from "constants/wallet";
 
 const types = {};
@@ -76,44 +76,6 @@ export function restore_wallet_by_keystore(
   };
 }
 
-export function login({ success, error, password }, network) {
-  console.log(network);
-  return async (dispatch) => {
-    const { encryptedJSON, address } = await getEncryptedKeyStore();
-
-    if (encryptedJSON && !address) {
-      error("Old Wallet. Restore with the Seed Phrase.");
-      return;
-    }
-
-    try {
-      const { address } = await decryptWallet(encryptedJSON, password);
-
-      if (address) {
-        session.set(`logged`, JSON.stringify(true));
-        await dispatch({ type: types.LOGGED, logged: true });
-        success();
-        return;
-      }
-
-      error("Login failed!");
-    } catch (err) {
-      console.log("Error trying to login: ", { err });
-      error("Login failed!");
-    }
-
-    return;
-  };
-}
-
-export function logout({ success }) {
-  return (dispatch) => {
-    session.set(`logged`, JSON.stringify(false));
-    dispatch({ type: types.LOGGED, logged: false });
-    success();
-  };
-}
-
 export function reset_transaction() {
   return (dispatch) => {
     dispatch({ type: types.RESET_TRANSACTION });
@@ -123,28 +85,6 @@ export function reset_transaction() {
 export function set_transaction({ key, value }) {
   return (dispatch) => {
     dispatch({ type: types.SET_TRANSACTION, key, value });
-  };
-}
-
-export function get_seed_and_pk({ password, success, error }) {
-  return async () => {
-    const { encryptedJSON } = await getEncryptedKeyStore();
-
-    try {
-      const { mnemonic, privateKey } = await decryptWallet(
-        encryptedJSON,
-        password,
-      );
-
-      if (mnemonic && mnemonic.phrase) {
-        success({ seed: mnemonic.phrase, privateKey });
-        return;
-      }
-
-      error(`Password invalid!`);
-    } catch (e) {
-      error(e);
-    }
   };
 }
 
