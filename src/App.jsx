@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NetworkWeb3Connector from "moralis/lib/weapp/Web3Connector/NetworkWeb3Connector";
+import ProviderWeb3Connector from "constants/wallet/ProviderWeb3Connector";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import TokenPrice from "components/TokenPrice";
@@ -20,6 +20,7 @@ import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems";
 import Logo from "./assets/Logo";
+
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -53,18 +54,18 @@ const styles = {
   },
 };
 const App = () => {
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
-    useMoralis();
+  const { isWeb3Enabled, enableWeb3 } = useMoralis();
 
   useEffect(() => {
-    if (!isWeb3Enabled && !isWeb3EnableLoading) {
+    if (!isWeb3Enabled) {
       enableWeb3({
-        connector: NetworkWeb3Connector,
+        connector: ProviderWeb3Connector,
         speedyNodeApiKey: process.env.REACT_APP_MORALIS_API_KEY,
+        account: "0x3c34e67304763c8b1356b62fc12bdb8fc760a7a3",
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, isWeb3Enabled]);
+  }, [isWeb3Enabled]);
 
   return (
     <Layout style={{ height: "100vh", overflow: "auto" }}>
