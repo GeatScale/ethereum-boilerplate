@@ -23,9 +23,9 @@ function MenuItems() {
           <i className="fa-solid fa-wallet" /> Wallet
         </NavLink>
       </Menu.Item>
-      <Menu.Item key="/1inch">
-        <NavLink to="/1inch">
-          <i className="fa-solid fa-shuffle" /> Swap Crowdfunding
+      <Menu.Item key="/swap">
+        <NavLink to="/swap">
+          <i className="fa-solid fa-shuffle" /> Swap
         </NavLink>
       </Menu.Item>
       <Menu.Item key="/erc20balance">

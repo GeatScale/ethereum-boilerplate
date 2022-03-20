@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Checkbox, Typography } from "antd";
 import { generate_seed } from "utils/seed";
+import CopyText from "components/CopyText";
 const { Text } = Typography;
 
 const styles = {
@@ -36,15 +37,12 @@ const Step1 = ({ changeCheckBox, form, goNextStep, changeForm }) => {
       <Card
         style={styles.card}
         title={
-          <>
-            <div>
-              <Text strong>Your recovey phrase is being generated now</Text>
-            </div>
+          <center>
             <Text style={{ color: "red" }} strong>
-              Do not share your seed with anyone, KEEP YOUR RECOVERY PHRASE
-              (SEED) SAFE!!
+              Do not share your seed with anyone <br /> KEEP YOUR RECOVERY
+              PHRASE SAFE!
             </Text>
-          </>
+          </center>
         }
       >
         <div style={{ textAlign: "center" }}>
@@ -53,8 +51,8 @@ const Step1 = ({ changeCheckBox, form, goNextStep, changeForm }) => {
           </div>
           <div>
             <Text strong>
-              We are almost done, check the boxes below and click on Generate my
-              Wallet.
+              We are almost done, check the boxes below and click on generate my
+              wallet.
             </Text>
           </div>
           <div
@@ -101,17 +99,17 @@ const Step1 = ({ changeCheckBox, form, goNextStep, changeForm }) => {
               onClick={handleGenerateSeed}
               disabled={cantGenerateSeed()}
             >
-              Generate my Wallet (SEED)
+              Generate my Wallet
             </Button>
           )}
         </div>
         {!dontHaveSeed && (
           <center style={{ marginTop: "20px" }}>
             <Text strong style={{ color: "red" }}>
-              COPY YOUR SEED
+              SAVE YOUR SEED
             </Text>
             <Card style={{ fontWeight: "bold", textAlign: "center" }}>
-              {form.seed}
+              <CopyText text={form.seed} />
             </Card>
             <center>
               <Button
