@@ -29,6 +29,7 @@ const InitController = () => {
         connector: ProviderWeb3Connector,
         speedyNodeApiKey: process.env.REACT_APP_MORALIS_API_KEY,
         account: address,
+        chainId: 4, // Using Rinkeby for now
       });
     }
   }

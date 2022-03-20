@@ -27,6 +27,11 @@ const menuItems = [
     value: "Ethereum",
     icon: <ETHLogo />,
   },
+  {
+    key: "0x4",
+    value: "Rinkeby Testnet",
+    icon: <ETHLogo />,
+  },
 ];
 
 function Chains() {
