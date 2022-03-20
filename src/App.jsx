@@ -3,11 +3,12 @@ import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import ERC20Balance from "components/ERC20Balance";
 import ERC20Transfers from "components/ERC20Transfers";
+import DEX from "components/DEX";
 import Wallet from "components/Wallet";
 import Welcome from "components/Welcome";
 import Signup from "components/Signup";
 import Login from "components/Login";
-import { Layout } from "antd";
+import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
@@ -92,6 +93,19 @@ const App = () => {
             </Route>
             <Route path="/erc20transfers">
               <ERC20Transfers />
+            </Route>
+            <Route path="/swap">
+              <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
+                <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
+                  <DEX chain="eth" />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
+                  <DEX chain="bsc" />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
+                  <DEX chain="polygon" />
+                </Tabs.TabPane>
+              </Tabs>
             </Route>
             <Route path="/backup">
               <Contract />
