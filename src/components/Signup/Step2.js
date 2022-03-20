@@ -102,9 +102,6 @@ const Step2 = ({ form, goNextStep }) => {
               >
                 Confirm
               </Button>
-              <Button type="primary" onClick={goNextStep}>
-                Confirm
-              </Button>
             </center>
           </>
         }
