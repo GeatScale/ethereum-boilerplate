@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { ETHLogo } from "./Logos";
-import { useChain, useMoralis } from "react-moralis";
+import { useChain } from "react-moralis";
+import { useAuthState } from "store/auth/state";
 
 const styles = {
   item: {
@@ -30,7 +31,7 @@ const menuItems = [
 
 function Chains() {
   const { switchNetwork, chainId } = useChain();
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated } = useAuthState();
   const [selected, setSelected] = useState({});
 
   useEffect(() => {

@@ -33,11 +33,6 @@ const InitController = () => {
   }
 
   useEffect(() => {
-    initAppAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     if (!isWeb3Enabled && isAuthenticated && address) {
       initAppAuth();
     }
