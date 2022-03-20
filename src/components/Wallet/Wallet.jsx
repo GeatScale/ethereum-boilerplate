@@ -16,8 +16,7 @@ const styles = {
     gap: "5px",
   },
   card: {
-    boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
-    border: "1px solid #e7eaf3",
+    boxShadow: "0 0 1.2rem rgb(8 96 242 / 20%)",
     borderRadius: "1rem",
     width: "450px",
     fontSize: "16px",

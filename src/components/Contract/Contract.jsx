@@ -1,8 +1,7 @@
 import { Card, Form, notification } from "antd";
 import { useMemo, useState } from "react";
 import Address from "components/Address/Address";
-import { useMoralis, useMoralisQuery } from "react-moralis";
-import { getEllipsisTxt } from "helpers/formatters";
+import { useMoralis } from "react-moralis";
 import ContractMethods from "./ContractMethods";
 import ContractResolver from "./ContractResolver";
 
@@ -10,11 +9,6 @@ export default function Contract() {
   const { Moralis, chainId } = useMoralis();
   const [responses, setResponses] = useState({});
   const [contract, setContract] = useState();
-
-  /**Moralis Live query for displaying contract's events*/
-  const { data } = useMoralisQuery("Events", (query) => query, [], {
-    live: true,
-  });
 
   /** Automatically builds write and read components for interacting with contract*/
   const displayedContractFunctions = useMemo(() => {
@@ -49,7 +43,9 @@ export default function Contract() {
         display: "flex",
         gap: "20px",
         marginTop: "25",
-        width: "70vw",
+        width: "50vw",
+        boxShadow: "0 0 1.2rem rgb(8 96 242 / 15%)",
+        borderRadius: "1rem",
       }}
     >
       <Card
@@ -61,7 +57,7 @@ export default function Contract() {
               alignItems: "center",
             }}
           >
-            Your contract: {contract?.contractName}
+            Export your SEED: {contract?.contractName}
             <Address
               avatar="left"
               copyable
@@ -72,7 +68,7 @@ export default function Contract() {
         }
         size="large"
         style={{
-          width: "60%",
+          width: "100%",
           boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
           border: "1px solid #e7eaf3",
           borderRadius: "0.5rem",
@@ -150,27 +146,6 @@ export default function Contract() {
         {isDeployedToActiveChain === false && (
           <>{`The contract is not deployed to the active ${chainId} chain. Switch your active chain or try agan later.`}</>
         )}
-      </Card>
-      <Card
-        title={"Contract Events"}
-        size="large"
-        style={{
-          width: "40%",
-          boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
-          border: "1px solid #e7eaf3",
-          borderRadius: "0.5rem",
-        }}
-      >
-        {data.map((event, key) => (
-          <Card
-            title={"Transfer event"}
-            size="small"
-            style={{ marginBottom: "20px" }}
-            key={key}
-          >
-            {getEllipsisTxt(event.attributes.transaction_hash, 14)}
-          </Card>
-        ))}
       </Card>
     </div>
   );
