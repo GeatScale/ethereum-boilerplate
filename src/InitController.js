@@ -5,7 +5,7 @@ import ProviderWeb3Connector from "constants/wallet/ProviderWeb3Connector";
 import { useAuthState } from "store/auth/state";
 
 const InitController = () => {
-  const { isWeb3Enabled, enableWeb3 } = useMoralis();
+  const { enableWeb3 } = useMoralis();
   const { isAuthenticated, address, keyStore, setIsAuthenticated } =
     useAuthState();
   const history = useHistory();
@@ -21,21 +21,20 @@ const InitController = () => {
   }
 
   function initAppAuth() {
-    console.log({ isAuthenticated, address, keyStore });
     if (keyStore && !isAuthenticated) return handleNotAuthenticated();
     if (!keyStore) return handleNoKeyStore();
 
-    enableWeb3({
-      connector: ProviderWeb3Connector,
-      speedyNodeApiKey: process.env.REACT_APP_MORALIS_API_KEY,
-      account: address,
-    });
+    if (isAuthenticated && address) {
+      enableWeb3({
+        connector: ProviderWeb3Connector,
+        speedyNodeApiKey: process.env.REACT_APP_MORALIS_API_KEY,
+        account: address,
+      });
+    }
   }
 
   useEffect(() => {
-    if (!isWeb3Enabled && isAuthenticated && address) {
-      initAppAuth();
-    }
+    initAppAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, isAuthenticated]);
 
