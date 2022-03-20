@@ -58,7 +58,7 @@ function ERC20Balance(props) {
     >
       <h1>
         <i className="fa-solid fa-coins" />
-        <spam> Token Balances</spam>
+        <span> Token Balances</span>
       </h1>
       <Skeleton loading={!assets}>
         <Table

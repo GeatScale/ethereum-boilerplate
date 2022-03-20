@@ -13,10 +13,6 @@ export default function ContractResolver({ contract, setContract }) {
       setContract(contractInfo);
     } else if (window.localStorage.getItem("contract"))
       setContract(JSON.parse(window.localStorage.getItem("contract")));
-    else
-      message.error(
-        "No contract found. Upload it manually or deploy the contract again",
-      );
   }, [contractInfo]);
 
   // Props for drag and drop uploader

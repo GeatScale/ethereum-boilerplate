@@ -1,8 +1,10 @@
 import { useMoralis, useNativeBalance } from "react-moralis";
+import { useAuthState } from "store/auth/state";
 
 function NativeBalance(props) {
   const { data: balance } = useNativeBalance(props);
-  const { account, isAuthenticated } = useMoralis();
+  const { account } = useMoralis();
+  const { isAuthenticated } = useAuthState();
 
   if (!account || !isAuthenticated) return null;
 

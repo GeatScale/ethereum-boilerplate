@@ -5,6 +5,7 @@ import Blockie from "../Blockie";
 import "./identicon.css";
 import { useMoralis } from "react-moralis";
 import { Skeleton } from "antd";
+import { useAuthState } from "store/auth/state";
 
 const styles = {
   address: {
@@ -18,9 +19,10 @@ const styles = {
 };
 
 function Address(props) {
-  const { account, isAuthenticated } = useMoralis();
+  const { account } = useMoralis();
   const [address, setAddress] = useState();
   const [isClicked, setIsClicked] = useState(false);
+  const { isAuthenticated } = useAuthState();
 
   useEffect(() => {
     setAddress(props?.address || (isAuthenticated && account));
@@ -59,7 +61,9 @@ function Address(props) {
   return (
     <div style={{ ...styles.address, ...props.style }}>
       {props.avatar === "left" && <Blockie address={address} size={7} />}
-      <p>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
+      <p style={{ margin: "0px 10px" }}>
+        {props.size ? getEllipsisTxt(address, props.size) : address}
+      </p>
       {props.avatar === "right" && <Blockie address={address} size={7} />}
       {props.copyable && (isClicked ? <Check /> : <Copy />)}
     </div>
