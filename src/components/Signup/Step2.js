@@ -18,6 +18,29 @@ const styles = {
     marginBottom: "30px",
     borderRadius: "0.5rem",
   },
+  seedBox: {
+    width: "100%",
+    margin: "0px",
+    display: "flex",
+    flexFlow: "row wrap",
+  },
+  cardBox: {
+    minWidth: "12.66%",
+    textAlign: "center",
+    margin: "2%",
+    padding: "0px",
+    border: "1px solid #ccc",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: "bold",
+  },
+  cardBoxSelected: {
+    color: "#f1f1f1",
+    backgroundColor: "#0860f2",
+  },
+  cardBoxBody: {
+    padding: "5px",
+  },
 };
 
 const Step2 = ({ form, goNextStep }) => {
@@ -61,52 +84,58 @@ const Step2 = ({ form, goNextStep }) => {
   const invalidSeed = !validateSeed();
 
   return (
-    <div>
-      <Card
-        style={styles.card}
-        title={
-          <>
-            <div>
-              <Text strong>Confirm your SEED</Text>
-            </div>
-            <Text style={{ color: "red" }} strong>
-              Make sure to put the SECRET SEED in the correct order.
-            </Text>
-            <Card style={{ fontWeight: "bold", textAlign: "center" }}>
-              {shuffledSeed.map((word) => {
-                return (
-                  <div onClick={() => handleSelectWord(word)} key={word}>
-                    {word}
-                  </div>
-                );
-              })}
+    <Card
+      style={styles.card}
+      title={
+        <center>
+          <Text strong>Confirm your SEED</Text>
+        </center>
+      }
+    >
+      <center>
+        <Text>Make sure to put the secret seed in the correct order.</Text>
+      </center>
+      <Card bodyStyle={styles.seedBox}>
+        {shuffledSeed.map((word) => {
+          return (
+            <Card
+              bodyStyle={styles.cardBoxBody}
+              style={styles.cardBox}
+              onClick={() => handleSelectWord(word)}
+              key={word}
+            >
+              {word}
             </Card>
-            <Card style={{ fontWeight: "bold", textAlign: "center" }}>
-              {selectedSeed.map((word) => {
-                return (
-                  <Text
-                    cursor="pointer"
-                    onClick={() => handleDeselectWord(word)}
-                    key={word}
-                  >
-                    {word}
-                  </Text>
-                );
-              })}
+          );
+        })}
+      </Card>
+      <Card bodyStyle={styles.seedBox}>
+        {selectedSeed.map((word) => {
+          return (
+            <Card
+              bodyStyle={styles.cardBoxBody}
+              style={{
+                ...styles.cardBox,
+                ...styles.cardBoxSelected,
+              }}
+              onClick={() => handleDeselectWord(word)}
+              key={word}
+            >
+              {word}
             </Card>
-            <center style={{ marginTop: "10px" }}>
-              <Button
-                disabled={invalidSeed}
-                type="primary"
-                onClick={checkSeedToNextStep}
-              >
-                Confirm
-              </Button>
-            </center>
-          </>
-        }
-      ></Card>
-    </div>
+          );
+        })}
+      </Card>
+      <center style={{ marginTop: "10px" }}>
+        <Button
+          disabled={invalidSeed}
+          type="primary"
+          onClick={checkSeedToNextStep}
+        >
+          Confirm
+        </Button>
+      </center>
+    </Card>
   );
 };
 
