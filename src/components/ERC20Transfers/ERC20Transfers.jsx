@@ -64,7 +64,7 @@ function ERC20Transfers() {
     >
       <h1>
         <i className="fa-solid fa-timeline" />
-        <span> ERC20 Transfers</span>
+        <span> Wallet History</span>
       </h1>
       <Skeleton loading={!ERC20Transfers}>
         <Table
