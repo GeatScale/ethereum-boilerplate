@@ -44,8 +44,8 @@ const Welcome = ({ history }) => {
           </div>
           <div style={{ marginBottom: "15px" }}>
             <Text>
-              The wallet has been fully developed in our own blockchain Possible
-              to send, receive and store cryptoassets safely
+              The wallet has been fully developed in our own blockchain possible
+              to send, receive and store crypto assets safely.
             </Text>
           </div>
           <Button type="primary" onClick={() => history.push(`/signup`)}>
