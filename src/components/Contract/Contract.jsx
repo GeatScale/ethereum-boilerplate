@@ -1,41 +1,9 @@
-import { Card, Form, notification } from "antd";
-import { useMemo, useState } from "react";
+import { Button, Card, Typography } from "antd";
 import Address from "components/Address/Address";
-import { useMoralis } from "react-moralis";
-import ContractMethods from "./ContractMethods";
-import ContractResolver from "./ContractResolver";
+
+const { Text } = Typography;
 
 export default function Contract() {
-  const { Moralis, chainId } = useMoralis();
-  const [responses, setResponses] = useState({});
-  const [contract, setContract] = useState();
-
-  /** Automatically builds write and read components for interacting with contract*/
-  const displayedContractFunctions = useMemo(() => {
-    if (!contract?.abi) return [];
-    return contract.abi.filter((method) => method["type"] === "function");
-  }, [contract]);
-
-  /** Returns true in case if contract is deployed to active chain in wallet */
-  const isDeployedToActiveChain = useMemo(() => {
-    if (!contract?.networks) return undefined;
-    return [parseInt(chainId, 16)] in contract.networks;
-  }, [contract, chainId]);
-
-  const contractAddress = useMemo(() => {
-    if (!isDeployedToActiveChain) return null;
-    return contract.networks[parseInt(chainId, 16)]?.["address"] || null;
-  }, [chainId, contract, isDeployedToActiveChain]);
-
-  /** Default function for showing notifications*/
-  const openNotification = ({ message, description }) => {
-    notification.open({
-      placement: "bottomRight",
-      message,
-      description,
-    });
-  };
-
   return (
     <div
       style={{
@@ -57,13 +25,8 @@ export default function Contract() {
               alignItems: "center",
             }}
           >
-            Export your SEED: {contract?.contractName}
-            <Address
-              avatar="left"
-              copyable
-              address={contractAddress}
-              size={8}
-            />
+            Export your SEED:
+            <Address avatar="left" copyable size={8} />
           </div>
         }
         size="large"
@@ -74,78 +37,30 @@ export default function Contract() {
           borderRadius: "0.5rem",
         }}
       >
-        <ContractResolver setContract={setContract} contract={contract} />
-
-        {isDeployedToActiveChain === true && (
-          <Form.Provider
-            onFormFinish={async (name, { forms }) => {
-              const params = forms[name].getFieldsValue();
-
-              let isView = false;
-
-              for (let method of contract?.abi) {
-                if (method.name !== name) continue;
-                console.log(method);
-                if (method.stateMutability === "view") isView = true;
-              }
-
-              const options = {
-                contractAddress,
-                functionName: name,
-                abi: contract?.abi,
-                params,
-              };
-
-              if (!isView) {
-                const tx = await Moralis.executeFunction({
-                  awaitReceipt: false,
-                  ...options,
-                });
-                tx.on("transactionHash", (hash) => {
-                  setResponses({
-                    ...responses,
-                    [name]: { result: null, isLoading: true },
-                  });
-                  openNotification({
-                    message: "🔊 New Transaction",
-                    description: `${hash}`,
-                  });
-                  console.log("🔊 New Transaction", hash);
-                })
-                  .on("receipt", (receipt) => {
-                    setResponses({
-                      ...responses,
-                      [name]: { result: null, isLoading: false },
-                    });
-                    openNotification({
-                      message: "📃 New Receipt",
-                      description: `${receipt.transactionHash}`,
-                    });
-                    console.log("🔊 New Receipt: ", receipt);
-                  })
-                  .on("error", (error) => {
-                    console.error(error);
-                  });
-              } else {
-                console.log("options22", options);
-                Moralis.executeFunction(options).then((response) =>
-                  setResponses({
-                    ...responses,
-                    [name]: { result: response, isLoading: false },
-                  }),
-                );
-              }
-            }}
-          >
-            <ContractMethods
-              displayedContractFunctions={displayedContractFunctions}
-              responses={responses}
-            />
-          </Form.Provider>
-        )}
-        {isDeployedToActiveChain === false && (
-          <>{`The contract is not deployed to the active ${chainId} chain. Switch your active chain or try agan later.`}</>
-        )}
+        <center>
+          <Text strong>Your 12 word phrase.</Text>
+          <Card style={{ marginBottom: "20px" }}>
+            <Text delete>
+              loyal chief tense rough victory unit marriage mean fresh wasp
+              mirror you
+            </Text>
+          </Card>
+          <Text strong>Your wallet private key.</Text>
+          <Card style={{ marginBottom: "20px" }}>
+            <Text>
+              0xba95d5688aa1e4269ed758db5fc9bcd4f3497e5623fc0e8129408d63c6b63ed0
+            </Text>
+          </Card>
+          <Text strong style={{ color: "red", fontSize: "15px" }}>
+            Remember not to share your security phrase with anyone.
+          </Text>
+        </center>
+        <center>
+          <Button type="primary">Copy phrase</Button>
+          <Button type="primary" style={{ marginLeft: "5px" }}>
+            Export encrypted file
+          </Button>
+        </center>
       </Card>
     </div>
   );
