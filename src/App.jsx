@@ -12,7 +12,7 @@ import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
-import Contract from "components/Contract/Contract";
+import Backup from "components/Backup/Backup";
 import Text from "antd/lib/typography/Text";
 import MenuItems from "./components/MenuItems";
 import Logo from "./assets/Logo";
@@ -102,7 +102,7 @@ const App = () => {
               </Tabs>
             </Route>
             <Route path="/backup">
-              <Contract />
+              <Backup />
             </Route>
             <Route exact path="/welcome">
               <Welcome />
