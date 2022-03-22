@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import ERC20Balance from "components/ERC20Balance";
-import ERC20Transfers from "components/ERC20Transfers";
+import History from "components/History/History";
 import DEX from "components/DEX";
 import Wallet from "components/Wallet";
 import Welcome from "components/Welcome";
@@ -85,8 +85,8 @@ const App = () => {
             <Route path="/erc20balance">
               <ERC20Balance />
             </Route>
-            <Route path="/erc20transfers">
-              <ERC20Transfers />
+            <Route path="/history">
+              <History />
             </Route>
             <Route path="/swap">
               <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>

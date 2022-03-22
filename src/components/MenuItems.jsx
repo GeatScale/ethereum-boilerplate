@@ -33,8 +33,8 @@ function MenuItems() {
           <i className="fa-solid fa-coins" /> Balances
         </NavLink>
       </Menu.Item>
-      <Menu.Item key="/erc20transfers">
-        <NavLink to="/erc20transfers">
+      <Menu.Item key="/history">
+        <NavLink to="/history">
           <i className="fa-solid fa-timeline" /> Activity
         </NavLink>
       </Menu.Item>

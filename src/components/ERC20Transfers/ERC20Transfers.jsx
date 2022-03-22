@@ -1,9 +1,10 @@
 import React from "react";
 import { useMoralis } from "react-moralis";
+import { Skeleton, Table } from "antd";
+import Text from "antd/lib/typography/Text";
 import { getEllipsisTxt } from "../../helpers/formatters";
 import { getExplorer } from "../../helpers/networks";
 import "antd/dist/antd.css";
-import { Skeleton, Table } from "antd";
 import { useERC20Transfers } from "hooks/useERC20Transfers";
 
 function ERC20Transfers() {
@@ -62,10 +63,10 @@ function ERC20Transfers() {
         borderRadius: "1rem",
       }}
     >
-      <h1>
+      <Text level={3}>
         <i className="fa-solid fa-timeline" />
-        <span> Wallet History</span>
-      </h1>
+        <span> ERC20 Transfers</span>
+      </Text>
       <Skeleton loading={!ERC20Transfers}>
         <Table
           dataSource={ERC20Transfers}

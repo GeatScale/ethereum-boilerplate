@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import { useMoralis } from "react-moralis";
+import React from "react";
+import { useMoralis, useNativeBalance } from "react-moralis";
+import { Skeleton, Table } from "antd";
+import Text from "antd/lib/typography/Text";
 import { getEllipsisTxt } from "../../helpers/formatters";
 import useNativeTransactions from "hooks/useNativeTransactions";
 import "antd/dist/antd.css";
-import { Skeleton, Table } from "antd";
-import styles from "./styles";
 
 function NativeTransactions() {
-  const { nativeTransactions, chainId } = useNativeTransactions();
+  const { nativeTransactions, chainId, isLoading } = useNativeTransactions();
   const { Moralis } = useMoralis();
-  useEffect(() => {
-    console.log(nativeTransactions);
-  }, [nativeTransactions]);
+  const { nativeToken } = useNativeBalance();
+
   const columns = [
     {
       title: "From",
@@ -59,11 +58,20 @@ function NativeTransactions() {
 
   let key = 0;
   return (
-    <div>
-      <h1 style={styles.title}>💸Native Transactions</h1>
-      <Skeleton
-        loading={!nativeTransactions || nativeTransactions.length === 0}
-      >
+    <div
+      style={{
+        width: "65vw",
+        padding: "15px",
+        boxShadow: "0 0 1.2rem rgb(8 96 242 / 15%)",
+        borderRadius: "1rem",
+        marginBottom: "20px",
+      }}
+    >
+      <Text level={2}>
+        <i className="fa-solid fa-timeline" />
+        <span> {nativeToken?.name} Transfers</span>
+      </Text>
+      <Skeleton loading={isLoading && nativeTransactions.length === 0}>
         <Table
           dataSource={nativeTransactions}
           columns={columns}
