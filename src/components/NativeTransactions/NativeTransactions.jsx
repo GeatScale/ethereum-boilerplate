@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMoralis, useNativeBalance } from "react-moralis";
 import { Skeleton, Table } from "antd";
 import Text from "antd/lib/typography/Text";
@@ -7,9 +7,15 @@ import useNativeTransactions from "hooks/useNativeTransactions";
 import "antd/dist/antd.css";
 
 function NativeTransactions() {
-  const { nativeTransactions, chainId, isLoading } = useNativeTransactions();
+  const { nativeTransactions, getNativeTransations, chainId, isLoading } =
+    useNativeTransactions();
   const { Moralis } = useMoralis();
   const { nativeToken } = useNativeBalance();
+
+  useEffect(() => {
+    getNativeTransations({ params: { chain: chainId } });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chainId]);
 
   const columns = [
     {
