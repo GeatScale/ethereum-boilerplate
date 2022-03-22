@@ -1,5 +1,6 @@
 import { useMoralis, useERC20Balances } from "react-moralis";
 import { Skeleton, Table } from "antd";
+import Text from "antd/lib/typography/Text";
 import { getEllipsisTxt } from "../helpers/formatters";
 
 function ERC20Balance(props) {
@@ -43,7 +44,9 @@ function ERC20Balance(props) {
       title: "Address",
       dataIndex: "token_address",
       key: "token_address",
-      render: (address) => getEllipsisTxt(address, 5),
+      render: (address) => (
+        <Text copyable={{ text: address }}>{getEllipsisTxt(address, 5)}</Text>
+      ),
     },
   ];
 
