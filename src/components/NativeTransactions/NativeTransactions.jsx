@@ -3,6 +3,7 @@ import { useMoralis, useNativeBalance } from "react-moralis";
 import { Skeleton, Table } from "antd";
 import Text from "antd/lib/typography/Text";
 import { getEllipsisTxt } from "../../helpers/formatters";
+import { getExplorer } from "helpers/networks";
 import useNativeTransactions from "hooks/useNativeTransactions";
 import "antd/dist/antd.css";
 
@@ -51,15 +52,7 @@ function NativeTransactions() {
       key: "hash",
       render: (hash) => (
         <a
-          href={
-            chainId === "0x1"
-              ? `https://etherscan.io/tx/${hash}`
-              : chainId === "0x38"
-              ? `https://bscscan.com/tx/${hash}`
-              : chainId === "0x89"
-              ? `https://polygonscan.com/tx/${hash}`
-              : `https://explorer.avax.network/search?query=${hash}`
-          }
+          href={`${getExplorer(chainId)}tx/${hash}`}
           target="_blank"
           rel="noreferrer"
         >
