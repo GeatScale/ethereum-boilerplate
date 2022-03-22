@@ -4,6 +4,7 @@ import Address from "components/Address/Address";
 import { useAuthState } from "store/auth/state";
 import { decryptWallet } from "helpers/wallet";
 import { MIN_PASSWORD_LENGTH } from "constants/wallet";
+import fileDownload from "js-file-download";
 
 const { Text } = Typography;
 
@@ -59,6 +60,10 @@ export default function Backup() {
     }
 
     setLoading(false);
+  }
+
+  function handleExportJson() {
+    fileDownload(keyStore, "Wallet-KeyStore.json");
   }
 
   const invalidPassword = form.password.length < MIN_PASSWORD_LENGTH;
@@ -127,7 +132,11 @@ export default function Backup() {
           >
             Reveal Seed
           </Button>
-          <Button type="primary" style={{ margin: "2px" }}>
+          <Button
+            onClick={handleExportJson}
+            type="primary"
+            style={{ margin: "2px" }}
+          >
             Export encrypted file
           </Button>
         </div>
