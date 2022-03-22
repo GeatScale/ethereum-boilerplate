@@ -12,7 +12,7 @@ import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
-import Contract from "components/Contract/Contract";
+import Backup from "components/Backup/Backup";
 import Text from "antd/lib/typography/Text";
 import MenuItems from "./components/MenuItems";
 import Logo from "./assets/Logo";
@@ -93,16 +93,10 @@ const App = () => {
                 <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
                   <DEX chain="eth" />
                 </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
-                  <DEX chain="bsc" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                  <DEX chain="polygon" />
-                </Tabs.TabPane>
               </Tabs>
             </Route>
             <Route path="/backup">
-              <Contract />
+              <Backup />
             </Route>
             <Route exact path="/welcome">
               <Welcome />

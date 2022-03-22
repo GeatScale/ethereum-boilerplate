@@ -70,7 +70,7 @@ const Welcome = ({ history }) => {
             <Button style={{ marginRight: "10px" }} type="primary">
               Seed
             </Button>
-            <Button type="primary">Json file</Button>
+            <Button type="primary">file</Button>
           </div>
         </Card>
       </div>
