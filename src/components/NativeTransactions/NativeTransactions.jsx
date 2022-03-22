@@ -9,7 +9,7 @@ import "antd/dist/antd.css";
 function NativeTransactions() {
   const { nativeTransactions, getNativeTransations, chainId, isLoading } =
     useNativeTransactions();
-  const { Moralis } = useMoralis();
+  const { account, Moralis } = useMoralis();
   const { nativeToken } = useNativeBalance();
 
   useEffect(() => {
@@ -29,6 +29,13 @@ function NativeTransactions() {
       dataIndex: "to_address",
       key: "to_address",
       render: (to) => getEllipsisTxt(to, 5),
+    },
+    {
+      title: "Direction",
+      dataIndex: "from_address",
+      key: "direction",
+      render: (from) =>
+        from?.toLowerCase() === account?.toLowerCase() ? "Out" : "In",
     },
     {
       title: "Value",

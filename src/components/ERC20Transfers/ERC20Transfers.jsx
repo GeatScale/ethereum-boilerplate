@@ -9,7 +9,7 @@ import { useERC20Transfers } from "hooks/useERC20Transfers";
 
 function ERC20Transfers() {
   const { ERC20Transfers, chainId } = useERC20Transfers();
-  const { Moralis } = useMoralis();
+  const { Moralis, account } = useMoralis();
 
   const columns = [
     {
@@ -29,6 +29,13 @@ function ERC20Transfers() {
       dataIndex: "to_address",
       key: "to_address",
       render: (to) => getEllipsisTxt(to, 8),
+    },
+    {
+      title: "Direction",
+      dataIndex: "from_address",
+      key: "direction",
+      render: (from) =>
+        from?.toLowerCase() === account?.toLowerCase() ? "Out" : "In",
     },
     {
       title: "Value",
