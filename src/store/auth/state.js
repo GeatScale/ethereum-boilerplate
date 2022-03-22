@@ -29,7 +29,7 @@ export function useAuthState() {
     },
     get address() {
       const keyStore = state.keyStore.get();
-      return JSON.parse(keyStore)?.address;
+      return `0x${JSON.parse(keyStore)?.address}`;
     },
     clearAuthData() {
       state.isAuthenticated.set(false);
