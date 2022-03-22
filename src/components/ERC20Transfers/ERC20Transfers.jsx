@@ -72,7 +72,7 @@ function ERC20Transfers() {
     >
       <Text level={3}>
         <i className="fa-solid fa-timeline" />
-        <span> ERC20 Transfers</span>
+        <span> Token Transfers</span>
       </Text>
       <Skeleton loading={!ERC20Transfers}>
         <Table
