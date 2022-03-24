@@ -1,6 +1,8 @@
+import { useMoralis } from "react-moralis";
 import Transfer from "./components/Transfer";
 import NativeBalance from "../NativeBalance";
 import Address from "../Address/Address";
+import QRCode from "qrcode.react";
 import Blockie from "../Blockie";
 import { Card } from "antd";
 
@@ -25,19 +27,28 @@ const styles = {
 };
 
 function Wallet() {
+  const { account } = useMoralis();
+
   return (
-    <Card
-      style={styles.card}
-      title={
-        <div style={styles.header}>
-          <Blockie scale={5} avatar currentWallet style />
-          <Address size="6" copyable />
-          <NativeBalance />
-        </div>
-      }
-    >
-      <Transfer />
-    </Card>
+    account && (
+      <Card
+        style={styles.card}
+        title={
+          <div style={styles.header}>
+            <center>
+              <Blockie scale={5} avatar currentWallet style />
+              <center>
+                <QRCode style={{ width: 100, height: 100 }} value={account} />
+              </center>
+              <Address size="6" copyable address={account} />
+              <NativeBalance />
+            </center>
+          </div>
+        }
+      >
+        <Transfer />
+      </Card>
+    )
   );
 }
 

@@ -25,6 +25,7 @@ function Address(props) {
   const { isAuthenticated } = useAuthState();
 
   useEffect(() => {
+    console.log(props.address, isAuthenticated, account);
     setAddress(props?.address || (isAuthenticated && account));
   }, [account, isAuthenticated, props]);
 
